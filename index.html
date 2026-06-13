@@ -1,14 +1,198 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>나의 첫 웹페이지</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 시대의 노동</title>
+
+  <style>
+    body{
+      margin:0;
+      background:#f3f3ef;
+      color:#202020;
+      font-family:sans-serif;
+    }
+
+    .wrap{
+      max-width:760px;
+      margin:auto;
+      padding:24px 16px 80px;
+    }
+
+    .hero{
+      position:relative;
+    }
+
+    .hero:before{
+      content:'';
+      position:absolute;
+      left:-60px;
+      top:-100px;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      background:radial-gradient(
+        circle,
+        rgba(110,214,110,.95) 0%,
+        rgba(110,214,110,.55) 35%,
+        rgba(110,214,110,0) 75%
+      );
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#000;
+      color:#fff;
+      font-size:11px;
+    }
+
+    .hero-title{
+      font-size:48px;
+      line-height:1.02;
+      letter-spacing:-0.06em;
+      color:transparent;
+      -webkit-text-stroke:1.5px #4f4f4f;
+      margin:28px 0;
+    }
+
+    .hero-question{
+      font-size:24px;
+      font-weight:700;
+      line-height:1.45;
+      margin-top:44px;
+    }
+
+    .hero-text{
+      line-height:1.9;
+      color:#444;
+    }
+
+    .notice{
+      margin:40px 0 12px;
+      padding:14px 16px;
+      background:#fafaf8;
+      border:1px solid #d9d9d5;
+      border-radius:14px;
+    }
+
+    .section{
+      margin-top:72px;
+    }
+
+    .section-no{
+      font-size:12px;
+      color:#7a7a7a;
+      letter-spacing:.18em;
+    }
+
+    .section-title{
+      font-size:34px;
+      font-weight:700;
+    }
+
+    .section-desc{
+      color:#6b6b6b;
+    }
+
+    .card{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      background:#fafaf8;
+      border:1px solid #ddd;
+      border-radius:18px;
+      padding:14px;
+      margin:12px 0;
+    }
+
+    .cover{
+      width:72px;
+      height:102px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    .title{
+      font-weight:700;
+    }
+
+    .author,
+    .call{
+      font-size:14px;
+      color:#6b6b6b;
+    }
+  </style>
+
 </head>
+
 <body>
+  <main class="wrap">
 
-<h1>안녕하세요</h1>
+```
+<section class="hero">
 
-<p>이곳은 내가 만든 첫 웹페이지입니다.</p>
+  <div class="eyebrow">
+    우면도서관 북큐레이션 ｜ 종합자료실
+  </div>
 
+  <h1 class="hero-title">
+    AI 시대의 노동,<br>
+    일의 미래를 묻다
+  </h1>
+
+  <p class="hero-question">
+    AI가 일하는 시대,<br>
+    인간은 무엇을 할 것인가
+  </p>
+
+  <div class="hero-text">
+    <p>
+      인공지능은 우리의 일자리를 빼앗을까요,<br>
+      새로운 기회를 만들어낼까요?
+    </p>
+
+    <p>
+      AI의 발전은 우리의 노동 환경과 필요한 역량을<br>
+      빠르게 변화시키고 있습니다.
+    </p>
+
+    <p>
+      이 책들과 함께 AI가 가져올 노동의 변화와 미래를 살펴보며,<br>
+      우리가 나아갈 방향을 함께 생각해 봅니다.
+    </p>
+  </div>
+
+</section>
+
+<div class="notice">
+  📚 책 표지를 클릭하면 해당 도서를 바로 찾아볼 수 있습니다.
+</div>
+
+<!-- SECTION 01 변화 -->
+<!-- 카드 구조는 아래 형식을 반복 -->
+
+<div class="card">
+  <a href="https://umyeon.seocholib.or.kr/bookDetail/MO/426074405/426074403/9788936481247"
+     target="_blank"
+     rel="noopener noreferrer">
+
+    <img
+      class="cover"
+      src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936481247.jpg"
+      alt="AI가 나보다 일을 잘할 때">
+  </a>
+
+  <div>
+    <div class="title">AI가 나보다 일을 잘할 때</div>
+    <div class="author">김대식 외</div>
+    <div class="call">321.52 김23ㅇ</div>
+  </div>
+</div>
+```
+
+  </main>
 </body>
 </html>
