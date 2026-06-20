@@ -21,12 +21,12 @@ body {
 }
 
 /* ==========================================================================
-   [격자 아귀 칼정렬 고정] HERO POSTER GRID SYSTEM
+   [완벽 조율] HERO POSTER GRID SYSTEM (가운데 정렬 + 격자 아귀 고정)
    ========================================================================== */
 .poster-container {
   position: relative;
   background: #fdfdfb;
-  border: 1px solid #1c1c1a; /* 외부 테두리 선 */
+  border: 1px solid #1c1c1a; /* 가늘고 명확한 격자 테두리 선 */
   margin-bottom: 60px;
   box-sizing: border-box;
   width: 100%;
@@ -64,7 +64,7 @@ body {
   flex-direction: column;
 }
 
-/* 격자가 어긋나지 않도록 가로 스냅 구조를 명확히 정의 */
+/* 격자가 절대 어긋나지 않도록 테이블 레이아웃 방식으로 확정 고정 */
 .poster-floor-1, .poster-floor-2 {
   display: flex;
   width: 100%;
@@ -75,29 +75,34 @@ body {
   border-bottom: 1px solid #1c1c1a;
 }
 
-/* 타이틀이 격자틀을 건드리지 않고 내부에서만 정렬되도록 패딩 구조 고정 */
+/* 타이틀이 우측 54px 공간을 침범하지 않으면서 정중앙에 오도록 조율 */
 .poster-title-area {
+  width: calc(100% - 54px);
   flex: 1;
-  padding: 48px 24px;
+  padding: 44px 20px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* 내부 요소를 중앙으로 */
+  align-items: center;
 }
 
-/* 쉼표를 제외하고는 임의로 줄바꿈이 생기지 않도록 고정 */
+/* 쉼표를 제외하고는 임의로 줄바꿈이 생기지 않도록 고정하며 정중앙 정렬 */
 .poster-main-title {
-  font-size: clamp(44px, 11vw, 68px); 
+  font-size: clamp(40px, 10vw, 64px); 
   font-weight: 900; 
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.055em; 
   color: #111110;
   margin: 0;
-  text-align: left; /* 포스터의 정갈한 좌측 정렬 고정 */
+  text-align: center; /* 박스 내부에서 완벽한 가운데 정렬 */
   white-space: nowrap; /* 오직 <br> 태그(쉼표 뒤)에서만 행바꿈 허용 */
 }
 
-/* 우측 세로형 뱃지 라벨 - 폭을 명확히 지정하여 아귀를 맞춤 */
+/* 우측 세로형 뱃지 라벨 - 고정 치수로 박아 아귀를 강제 일치시킴 */
 .poster-side-badge {
   width: 54px;
   min-width: 54px;
+  max-width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
@@ -116,6 +121,7 @@ body {
 
 /* 2층 소개 서문 박스 */
 .poster-desc-area {
+  width: calc(100% - 54px);
   flex: 1;
   padding: 38px 24px;
   box-sizing: border-box;
@@ -140,10 +146,11 @@ body {
   margin-bottom: 0;
 }
 
-/* 우측 디테일 셀 - 상단 뱃지와 폭을 일치시켜 세로 격자 아귀를 칼같이 매칭 */
+/* 우측 디테일 셀 - 1층 뱃지와 세로 격자 라인을 자석처럼 100% 일치시킴 */
 .poster-side-deco {
   width: 54px;
   min-width: 54px;
+  max-width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
@@ -252,11 +259,11 @@ body {
 <body>
 <main class='wrap'>
   
-  <!-- 포스터 격자 프레임의 가로/세로 아귀를 완벽하게 고정하고 정렬을 바로잡은 완전형 히어로 -->
+  <!-- 타이틀 가운데 정렬과 우측 격자 라인의 칼매칭을 동시 실현한 최종 완성본 포스터 히어로 -->
   <section class='poster-container'>
     <div class="poster-content">
       
-      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 (우측 라벨 배너와 완벽 라인 매칭) -->
+      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 (박스 내 완벽한 가운데 정렬 고정) -->
       <div class="poster-floor-1">
         <div class="poster-title-area">
           <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
@@ -266,7 +273,7 @@ body {
         </div>
       </div>
       
-      <!-- 2층: 콤마 줄바꿈 격자형 서문 안내 셀 + ★ 별 심볼 마크 (세로 라인이 1층과 칼같이 일치) -->
+      <!-- 2층: 서문 안내 셀 + ★ 별 심볼 마크 (세로 격자선이 1층과 한치의 오차 없이 일치) -->
       <div class="poster-floor-2">
         <div class="poster-desc-area">
           <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
