@@ -73,14 +73,13 @@ body {
   border-bottom: 1.5px solid #bdbeb6;
 }
 
-/* 모바일 화면 가로를 꽉 채우도록 크기를 극대화하되 잘리지 않도록 배치 */
+/* 미술관 전시 안내 스타일로 전면 개편 (솔리드 타입 및 미니멀 자간 적용) */
 .hero-title {
-  font-size: clamp(48px, 14vw, 76px); 
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.055em;
-  color: #ffffff;
-  -webkit-text-stroke: 1.5px #1c1c1a;
+  font-size: clamp(48px, 14vw, 72px); 
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #1a1a17; /* 세련되고 깊이감 있는 미술관 레터링 컬러 */
   margin: 0;
   word-break: keep-all;
   width: 100%;
@@ -88,28 +87,29 @@ body {
   animation: 미니멀페이드 1.6s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-/* 타이틀 밑 소개글 영역 */
+/* 타이틀 밑 소개글 영역 - 모두 우측 정렬로 변경 */
 .hero-question {
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.45;
-  margin: 56px 0 16px;
+  line-height: 1.5;
+  margin: 64px 0 24px;
   color: #111;
-  border-left: 3px solid #111;
-  padding-left: 16px;
+  text-align: right; /* 우측 정렬 */
+  letter-spacing: -0.03em;
   animation: 미니멀페이드 1.8s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-delay: 0.2s;
 }
 .hero-text {
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.9;
   color: #555;
-  padding-left: 20px;
+  text-align: right; /* 우측 정렬 */
+  padding-left: 0;
   animation: 미니멀페이드 2s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-delay: 0.4s;
 }
 .hero-text p {
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
 }
 
 /* 안내 문구 바 */
