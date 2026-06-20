@@ -21,7 +21,7 @@ body {
 }
 
 /* ==========================================================================
-   [완벽 교정] HERO POSTER GRID SYSTEM (초록색 고른 분포 + 프리텐다드 블랙)
+   [정밀 튜닝] HERO POSTER GRID SYSTEM (초록 채도 다운 + 노이즈 극대화 + 타이틀 벌크업)
    ========================================================================== */
 .poster-container {
   position: relative;
@@ -33,25 +33,25 @@ body {
   overflow: hidden;
 }
 
-/* 이미지의 색상 분포 분석 반영: 상단 타이틀부터 하단까지 초록색 톤이 고르게 분포하도록 배경 수정 */
+/* 초록색 배경 채도를 맑고 차분하게 낮춤 */
 .poster-container::before {
   content: '';
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(135deg, rgba(185, 245, 185, 0.85) 0%, rgba(225, 252, 225, 0.5) 40%, rgba(253, 253, 251, 0) 85%),
-    radial-gradient(circle at 15% 25%, rgba(90, 235, 90, 0.7) 0%, transparent 55%),
-    radial-gradient(circle at 85% 75%, rgba(120, 240, 120, 0.5) 0%, transparent 60%);
+    linear-gradient(135deg, rgba(200, 242, 200, 0.75) 0%, rgba(235, 252, 235, 0.4) 40%, rgba(253, 253, 251, 0) 85%),
+    radial-gradient(circle at 15% 25%, rgba(90, 215, 90, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 85% 75%, rgba(130, 230, 130, 0.35) 0%, transparent 60%);
   z-index: 1;
 }
 
-/* 포스터 특유의 까슬까슬한 종이 노이즈 질감(Grain) 오버레이 */
+/* 노이즈 질감 강도를 눈에 확 띄도록 극대화 변경 */
 .poster-container::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.08; /* 노이즈 강도 유지 */
+  opacity: 0.14; /* 노이즈 입자감이 확실하게 보이도록 대폭 상향 */
   mix-blend-mode: multiply;
   z-index: 2;
   pointer-events: none;
@@ -71,16 +71,16 @@ body {
 }
 .poster-title-area {
   flex: 1;
-  padding: 44px 24px;
+  padding: 48px 24px;
   box-sizing: border-box;
 }
 
-/* 프리텐다드 블랙 적용 및 격자 틀을 절대 깨지 않는 선에서 크기 최적화 */
+/* 폰트 크기를 모바일 꽉 차도록 대담하게 스케일업 */
 .poster-main-title {
-  font-size: clamp(38px, 8.8vw, 60px); 
-  font-weight: 900; /* 프리텐다드 최고 두께로 대담함 연출 */
-  line-height: 1.15;
-  letter-spacing: -0.055em; /* 포스터 특유의 타이트한 자간 */
+  font-size: clamp(44px, 11vw, 68px); /* 가로 격자를 부수지 않는 최대치까지 볼륨업 */
+  font-weight: 900; 
+  line-height: 1.12;
+  letter-spacing: -0.055em; 
   color: #111110;
   margin: 0;
   word-break: keep-all;
@@ -134,7 +134,7 @@ body {
   margin-bottom: 0;
 }
 
-/* 우측 디테일 셀 : 클래식한 성좌 별 심볼(✦) 배치 */
+/* 우측 디테일 셀 : 클래식한 5각 별 심볼(★) 확실하게 마킹 */
 .poster-side-deco {
   width: 54px;
   border-left: 1px solid #1c1c1a;
@@ -145,7 +145,7 @@ body {
   box-sizing: border-box;
 }
 .poster-sparkle-icon {
-  font-size: 18px;
+  font-size: 16px;
   color: #1c1c1a;
   font-weight: bold;
 }
@@ -259,7 +259,7 @@ body {
         </div>
       </div>
       
-      <!-- 2층: 콤마 줄바꿈 및 격자형 서문 안내 셀 + ✦ 별 심볼 마크 -->
+      <!-- 2층: 콤마 줄바꿈 및 격자형 서문 안내 셀 + ★ 별 심볼 마크 -->
       <div class="poster-floor-2">
         <div class="poster-desc-area">
           <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
@@ -270,7 +270,7 @@ body {
           </div>
         </div>
         <div class="poster-side-deco">
-          <span class="poster-sparkle-icon">✦</span>
+          <span class="poster-sparkle-icon">★</span>
         </div>
       </div>
 
@@ -370,7 +370,7 @@ body {
     </div>
     
     <div class='card'>
-      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/4233172830/4233172828/9791173324253' target='_blank' rel='noopener noreferrer'>
+      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/423172830/423172828/9791173324253' target='_blank' rel='noopener noreferrer'>
         <img class='cover' src='https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791173324253.jpg' alt='AI 시대, 강력한 개인이 온다'>
       </a>
       <div class="card-info">
