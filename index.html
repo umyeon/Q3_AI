@@ -6,7 +6,7 @@
 <title>AI 시대의 노동</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
-/* 전반적인 무드 및 배경색 정돈 */
+/* 기본 세팅 및 잔여 스타일 간섭 방지 */
 body {
   margin: 0;
   background: #f8f8f6;
@@ -20,99 +20,133 @@ body {
   padding: 40px 20px 100px;
 }
 
-/* --- HERO SECTION --- */
-.hero {
+/* ==========================================================================
+   [전면 개편] HERO POSTER GRID SYSTEM (image_b24243.png 완벽 이식)
+   ========================================================================== */
+.poster-container {
   position: relative;
-  padding: 20px 0;
+  background: #fdfdfb;
+  border: 1px solid #1c1c1a; /* 포스터의 선명하고 얇은 테두리 선 */
   margin-bottom: 60px;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 
-/* 미술관 디지털 전시 무드의 극도로 절제된 블러 페이드인 애니메이션 */
-@keyframes 미니멀페이드 {
-  from {
-    opacity: 0;
-    filter: blur(12px);
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
-  }
-}
-
-/* 초록색 광원을 더 왼쪽으로 이동시키고 타이틀과 자연스럽게 중첩되도록 수정 */
-.hero:before {
+/* 포스터 감성의 연초록 라임 그라데이션 베이스 */
+.poster-container::before {
   content: '';
   position: absolute;
-  left: -120px; /* 더 왼쪽으로 배치 */
-  top: 40px;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(141, 230, 141, 0.85) 0%, rgba(141, 230, 141, 0.4) 45%, rgba(248, 248, 246, 0) 70%);
-  filter: blur(15px);
-  z-index: -1;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, rgba(215, 247, 215, 0.95) 0%, rgba(240, 252, 240, 0.5) 50%, rgba(253, 253, 251, 0) 100%),
+    radial-gradient(circle at 15% 35%, rgba(135, 235, 135, 0.6) 0%, transparent 60%);
+  z-index: 1;
+}
+
+/* 포스터 특유의 고급스러운 입자감 (Grain Noise 종이 질감) */
+.poster-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  z-index: 2;
   pointer-events: none;
-  animation: 미니멀페이드 2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-/* 아이브로우와 타이틀 사이 여백 넓게 유지 */
-.eyebrow-wrapper {
+.poster-content {
+  position: relative;
+  z-index: 3;
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 100px;
-}
-.eyebrow {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  color: #61615c;
-  letter-spacing: 0.04em;
-  padding-bottom: 6px;
-  border-bottom: 1.5px solid #bdbeb6;
+  flex-direction: column;
 }
 
-/* 미술관 전시 안내 스타일로 전면 개편 (솔리드 타입 및 미니멀 자간 적용) */
-.hero-title {
-  font-size: clamp(48px, 14vw, 72px); 
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  color: #1a1a17; /* 세련되고 깊이감 있는 미술관 레터링 컬러 */
+/* 그리드 1층 : 대담한 헤드라인 + 가로폭 제한 없는 타이포 블록 */
+.poster-floor-1 {
+  display: flex;
+  border-bottom: 1px solid #1c1c1a;
+}
+.poster-title-area {
+  flex: 1;
+  padding: 48px 24px;
+}
+.poster-main-title {
+  font-size: clamp(36px, 8.5vw, 56px);
+  font-weight: 900; /* 포스터 특유의 묵직한 서체 굵기 */
+  line-height: 1.15;
+  letter-spacing: -0.05em; /* 타이트한 간격 완벽 구현 */
+  color: #111110;
   margin: 0;
   word-break: keep-all;
-  width: 100%;
-  box-sizing: border-box;
-  animation: 미니멀페이드 1.6s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-/* 타이틀 밑 소개글 영역 - 모두 우측 정렬로 변경 */
-.hero-question {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.5;
-  margin: 64px 0 24px;
-  color: #111;
-  text-align: right; /* 우측 정렬 */
-  letter-spacing: -0.03em;
-  animation: 미니멀페이드 1.8s cubic-bezier(0.25, 1, 0.5, 1) both;
-  animation-delay: 0.2s;
+/* 포스터 우측의 슬림한 세로형 뱃지 영역 조립 */
+.poster-side-badge {
+  width: 54px;
+  border-left: 1px solid #1c1c1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251, 251, 250, 0.4);
 }
-.hero-text {
-  font-size: 15px;
-  line-height: 1.9;
-  color: #555;
-  text-align: right; /* 우측 정렬 */
-  padding-left: 0;
-  animation: 미니멀페이드 2s cubic-bezier(0.25, 1, 0.5, 1) both;
-  animation-delay: 0.4s;
+.poster-side-badge span {
+  transform: rotate(90deg);
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 800;
+  color: #1c1c1a;
+  letter-spacing: 0.2em;
 }
-.hero-text p {
+
+/* 그리드 2층 : 정갈하게 박싱 처리된 서문 박스 + 스파클 심볼 포인트 */
+.poster-floor-2 {
+  display: flex;
+  background: rgba(255, 255, 255, 0.3);
+}
+.poster-desc-area {
+  flex: 1;
+  padding: 36px 24px;
+}
+.poster-question-text {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+  color: #111110;
   margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+.poster-body-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #3a3a35;
+  text-align: left;
+}
+.poster-body-text p {
+  margin: 0 0 10px 0;
+}
+.poster-body-text p:last-child {
+  margin-bottom: 0;
 }
 
-/* 안내 문구 바 */
+/* 포스터 내 크로스 섹션 교차점의 스파클(✦) 데코 */
+.poster-side-deco {
+  width: 54px;
+  border-left: 1px solid #1c1c1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+.poster-sparkle-icon {
+  font-size: 16px;
+  color: #1c1c1a;
+  font-weight: bold;
+}
+
+/* --- 이하 고정 영역 레이아웃 --- */
 .notice {
   display: flex;
   align-items: center;
@@ -127,7 +161,6 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 
-/* --- SECTION & CARDS --- */
 .section {
   margin-top: 64px;
   padding-top: 40px;
@@ -151,7 +184,6 @@ body {
   margin: 4px 0 20px;
 }
 
-/* 카드 레이아웃 */
 .card {
   display: flex;
   gap: 20px;
@@ -168,7 +200,6 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
-/* 도서 이미지 호버 효과 */
 .cover {
   width: 76px;
   height: 108px;
@@ -181,7 +212,6 @@ body {
   transform: scale(1.03);
 }
 
-/* 도서 정보 텍스트 */
 .card-info {
   flex: 1;
 }
@@ -210,16 +240,36 @@ body {
 </head>
 <body>
 <main class='wrap'>
-  <section class='hero'>
-    <div class='eyebrow-wrapper'>
-      <div class='eyebrow'>우면도서관 북큐레이션 ｜ 종합자료실</div>
-    </div>
-    <h1 class='hero-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
-    <h2 class='hero-question'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
-    <div class='hero-text'>
-      <p>인공지능은 우리의 일자리를 빼앗을까요,<br>새로운 기회를 만들어낼까요?</p>
-      <p>AI의 발전은 우리의 노동 환경과 필요한 역량을<br>빠르게 변화시키고 있습니다.</p>
-      <p>이 책들과 함께 AI가 가져올 노동의 변화와 미래를<br> 살펴보며, 우리가 나아갈 방향을 생각해 봅니다.</p>
+  
+  <!-- 충돌 여지를 완전히 없앤 독립식 포스터 컨테이너 그리드 마크업 -->
+  <section class='poster-container'>
+    <div class="poster-content">
+      
+      <!-- 1층: 타이틀 셀 + 세로 사이드 배너 라벨 -->
+      <div class="poster-floor-1">
+        <div class="poster-title-area">
+          <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
+        </div>
+        <div class="poster-side-badge">
+          <span>우면도서관 ｜ 종합자료실</span>
+        </div>
+      </div>
+      
+      <!-- 2층: 큐레이션 서문 안내 셀 + 교차 십자 심볼 마크 -->
+      <div class="poster-floor-2">
+        <div class="poster-desc-area">
+          <h2 class='poster-question-text'>AI가 일하는 시대, 인간은 무엇을 할 것인가</h2>
+          <div class='poster-body-text'>
+            <p>인공지능은 우리의 일자리를 빼앗을까요, 새로운 기회를 만들어낼까요?</p>
+            <p>AI의 발전은 우리의 노동 환경과 필요한 역량을 빠르게 변화시키고 있습니다.</p>
+            <p>이 책들과 함께 AI가 가져올 노동의 변화와 미래를 살펴보며, 우리가 나아갈 방향을 생각해 봅니다.</p>
+          </div>
+        </div>
+        <div class="poster-side-deco">
+          <span class="poster-sparkle-icon">✦</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -243,7 +293,7 @@ body {
     </div>
     
     <div class='card'>
-      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/417435259/417435257/9788962626605' target='_blank' rel='noopener noreferrer'>
+      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/417435259/417435257/9791192488776' target='_blank' rel='noopener noreferrer'>
         <img class='cover' src='https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788962626605.jpg' alt='먼저 온 미래'>
       </a>
       <div class="card-info">
