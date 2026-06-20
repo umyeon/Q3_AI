@@ -21,7 +21,7 @@ body {
 }
 
 /* ==========================================================================
-   [정밀 튜닝] HERO POSTER GRID SYSTEM (초록 채도 다운 + 노이즈 극대화 + 타이틀 벌크업)
+   [최종 완벽본] HERO POSTER GRID SYSTEM (쉼표 기준 고정 행바꿈 적용)
    ========================================================================== */
 .poster-container {
   position: relative;
@@ -73,17 +73,18 @@ body {
   flex: 1;
   padding: 48px 24px;
   box-sizing: border-box;
+  overflow-x: auto; /* 만에 하나 화면 폭이 극단적으로 좁을 때 대비 */
 }
 
-/* 폰트 크기를 모바일 꽉 차도록 대담하게 스케일업 */
+/* 쉼표를 제외하고는 임의로 줄바꿈이 생기지 않도록 고정 */
 .poster-main-title {
-  font-size: clamp(44px, 11vw, 68px); /* 가로 격자를 부수지 않는 최대치까지 볼륨업 */
+  font-size: clamp(44px, 11vw, 68px); 
   font-weight: 900; 
   line-height: 1.12;
   letter-spacing: -0.055em; 
   color: #111110;
   margin: 0;
-  word-break: keep-all;
+  white-space: nowrap; /* 오직 <br> 태그(쉼표 뒤)에서만 행바꿈 허용 */
 }
 
 /* 우측 세로형 뱃지 라벨 */
@@ -245,11 +246,11 @@ body {
 <body>
 <main class='wrap'>
   
-  <!-- 포스터 격자 프레임의 아귀를 칼같이 유지하면서 초록색 톤을 상하방에 고르게 분산시킨 완전형 히어로 -->
+  <!-- 포스터 격자 프레임을 지키면서 오직 쉼표 기준으로만 브레이크 행바꿈을 넣은 최종본 -->
   <section class='poster-container'>
     <div class="poster-content">
       
-      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 (우측 정밀 스냅 보더라인 매칭) -->
+      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 -->
       <div class="poster-floor-1">
         <div class="poster-title-area">
           <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
@@ -259,7 +260,7 @@ body {
         </div>
       </div>
       
-      <!-- 2층: 콤마 줄바꿈 및 격자형 서문 안내 셀 + ★ 별 심볼 마크 -->
+      <!-- 2층: 격자형 서문 안내 셀 + ★ 별 심볼 마크 -->
       <div class="poster-floor-2">
         <div class="poster-desc-area">
           <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
