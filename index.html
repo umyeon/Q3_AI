@@ -60,15 +60,15 @@ body {
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* 타이포그래피 요소(드롭 섀도우) 추가 및 상단 여백 추가 확보 */
+/* 촌스러움을 유발하던 text-stroke 대신 SVG 필터 기법을 활용한 완벽한 아웃라인 타이포그래피 구현 */
 .hero-title {
-  font-size: 56px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-  color: rgba(255, 255, 255, 0.9);
-  -webkit-text-stroke: 1.3px #282825;
-  filter: drop-shadow(3px 3px 0px rgba(40, 40, 37, 0.08));
+  font-size: 58px;
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  /* 아래 필터를 통해 글자 안쪽을 파먹지 않는 세련된 외부 테두리 생성 */
+  filter: url(#clean-outline);
   margin: 32px 0 0 0;
   word-break: keep-all;
 }
@@ -109,7 +109,7 @@ body {
 }
 
 /* --- SECTION & CARDS --- */
-/* 각 섹션이 매끄럽고 고급스럽게 분리되도록 상단 보더라인 레이아웃 설정 */
+/* 각 섹션이 매끄럽고 고급스럽게 분리되도록 상단 보던라인 레이아웃 설정 */
 .section {
   margin-top: 64px;
   padding-top: 40px;
@@ -191,6 +191,20 @@ body {
 </style>
 </head>
 <body>
+
+<!-- 글자 왜곡 없는 깔끔한 아웃라인을 만들기 위한 정밀 SVG 필터 정의 (화면에는 보이지 않음) -->
+<svg stroke-width="0" style="position:absolute; width:0; height:0;">
+  <filter id="clean-outline">
+    <feMorphology timeline="inherit" operator="dilate" radius="1.5" in="SourceAlpha" result="dilated"/>
+    <feFlood flood-color="#242420" flood-opacity="1" result="floaded"/>
+    <feComposite in="floaded" in2="dilated" operator="in" result="outline"/>
+    <feMerge>
+      <feMergeNode in="outline"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</svg>
+
 <main class='wrap'>
   <section class='hero'>
     <div class='eyebrow-wrapper'>
