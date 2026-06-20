@@ -20,29 +20,37 @@ body {
   padding: 40px 20px 100px;
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (새로운 포스터 무드로 전면 개편) --- */
 .hero {
   position: relative;
-  padding-top: 20px;
+  padding: 40px 32px;
   margin-bottom: 50px;
+  background: #133a22; /* 기존 배경의 초록색을 메인으로 깊고 진하게 적용 */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(19, 58, 34, 0.15);
 }
 
-/* 이미지의 자연스러운 초록색 광원 효과 재현 */
+/* 은은하게 깔리는 복합 그린 그라데이션 레이어 */
 .hero:before {
   content: '';
   position: absolute;
-  left: -80px;
-  top: -40px;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(143, 238, 143, 0.7) 0%, rgba(180, 245, 180, 0.3) 45%, rgba(255,255,255,0) 70%);
-  filter: blur(20px);
-  z-index: -1;
+  left: -10%;
+  top: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at 20% 30%, #1e5c36 0%, #133a22 50%, #0a2213 100%);
+  z-index: 1;
   pointer-events: none;
 }
 
-/* 무드에 맞춰 미니멀한 라인 스타일로 변경 및 아래 여백 확실하게 확보 */
+/* 모든 콘텐츠가 그라데이션 위에 보이도록 제어 */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 포스터 무드에 맞춰 투명 뱃지 형태로 변경 및 아래 여백 확보 */
 .eyebrow-wrapper {
   display: flex;
   justify-content: flex-end;
@@ -50,43 +58,43 @@ body {
 }
 .eyebrow {
   display: inline-flex;
-  padding: 5px 12px;
-  border-radius: 6px;
-  border: 1px solid #c2c2bc;
-  color: #555550;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  background: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
 }
 
-/* 촌스러움을 유발하던 text-stroke 대신 SVG 필터 기법을 활용한 완벽한 아웃라인 타이포그래피 구현 */
+/* image_be26ac.png 무드를 참고한 강렬하고 선명한 솔리드 타이포그래피 */
 .hero-title {
-  font-size: 58px;
-  font-weight: 850;
-  line-height: 1.2;
-  letter-spacing: -0.045em;
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
   color: #ffffff;
-  /* 아래 필터를 통해 글자 안쪽을 파먹지 않는 세련된 외부 테두리 생성 */
-  filter: url(#clean-outline);
   margin: 32px 0 0 0;
   word-break: keep-all;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 타이틀 밑 소개글과의 여백 확보 */
+/* 타이틀 밑 소개글과의 여백 확보 및 포스터 톤앤매너 매칭 */
 .hero-question {
   font-size: 22px;
   font-weight: 700;
   line-height: 1.45;
   margin: 56px 0 16px;
-  color: #111;
-  border-left: 3px solid #111;
+  color: #a3e2b9; /* 그린 톤에 맞춘 포인트 컬러 변경 */
+  border-left: 3px solid #a3e2b9;
   padding-left: 16px;
 }
 .hero-text {
   font-size: 15px;
   line-height: 1.8;
-  color: #555;
+  color: rgba(255, 255, 255, 0.75);
   padding-left: 20px;
 }
 .hero-text p {
@@ -109,7 +117,6 @@ body {
 }
 
 /* --- SECTION & CARDS --- */
-/* 각 섹션이 매끄럽고 고급스럽게 분리되도록 상단 보던라인 레이아웃 설정 */
 .section {
   margin-top: 64px;
   padding-top: 40px;
@@ -133,7 +140,7 @@ body {
   margin: 4px 0 20px;
 }
 
-/* 카드 레이아웃 고급화 (그림자 및 여백 조절) */
+/* 카드 레이아웃 고급화 */
 .card {
   display: flex;
   gap: 20px;
@@ -191,20 +198,6 @@ body {
 </style>
 </head>
 <body>
-
-<!-- 글자 왜곡 없는 깔끔한 아웃라인을 만들기 위한 정밀 SVG 필터 정의 (화면에는 보이지 않음) -->
-<svg stroke-width="0" style="position:absolute; width:0; height:0;">
-  <filter id="clean-outline">
-    <feMorphology timeline="inherit" operator="dilate" radius="1.5" in="SourceAlpha" result="dilated"/>
-    <feFlood flood-color="#242420" flood-opacity="1" result="floaded"/>
-    <feComposite in="floaded" in2="dilated" operator="in" result="outline"/>
-    <feMerge>
-      <feMergeNode in="outline"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</svg>
-
 <main class='wrap'>
   <section class='hero'>
     <div class='eyebrow-wrapper'>
