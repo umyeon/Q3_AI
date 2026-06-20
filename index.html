@@ -4,11 +4,11 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>AI 시대의 노동</title>
-<!-- 지마켓 산스(Gmarket Sans) 및 프리텐다드 서체 로드 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.css" />
+<!-- Gmarket Sans 서체 명확한 웹폰트 스크립트 로드 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.css" />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
-/* 기본 세팅 및 잔여 스타일 간섭 방지 */
+/* 전반적인 기본 톤앤매너 */
 body {
   margin: 0;
   background: #f8f8f6;
@@ -23,36 +23,24 @@ body {
 }
 
 /* ==========================================================================
-   [개선] HERO POSTER GRID SYSTEM (Gmarket Sans + 고채도 노이즈 질감)
+   [완벽 매칭] HERO POSTER GRID SYSTEM (image_b16c85.png 레이아웃 완벽 이식)
    ========================================================================== */
 .poster-container {
   position: relative;
-  background: #fefefc;
+  background: #ffffff;
   border: 1px solid #1c1c1a;
   margin-bottom: 60px;
   box-sizing: border-box;
-  overflow: hidden;
   width: 100%;
 }
 
-/* 초록색 배경 채도 대폭 상승 */
-.poster-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(135deg, rgba(185, 245, 185, 0.95) 0%, rgba(220, 252, 220, 0.4) 50%, rgba(254, 254, 252, 0) 100%),
-    radial-gradient(circle at 15% 35%, rgba(90, 235, 90, 0.75) 0%, transparent 65%);
-  z-index: 1;
-}
-
-/* 노이즈 질감 투명도 상향 및 대비 강화 */
+/* 이미지처럼 전체 레이어를 투과하는 공통 종이 노이즈 질감(Grain) 오버레이 */
 .poster-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.08; /* 노이즈가 한층 더 잘 보이도록 조정 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
   mix-blend-mode: multiply;
   z-index: 2;
   pointer-events: none;
@@ -65,36 +53,39 @@ body {
   flex-direction: column;
 }
 
-/* 그리드 1층 : 지마켓 산스 타이틀 블록 */
+/* [그리드 1층] 타이틀 영역 + 우측 세로 라벨 (이미지 상단처럼 깨끗하고 맑게 배경 유지) */
 .poster-floor-1 {
   display: flex;
   border-bottom: 1px solid #1c1c1a;
+  background: #ffffff;
 }
 .poster-title-area {
   flex: 1;
-  padding: 54px 24px;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* 지마켓 산스 적용, 글자 크기 확장 및 줄바꿈 방지 */
+/* Gmarket Sans Bold 교정 및 아웃박스를 절대 해치지 않는 크기 설정 */
 .poster-main-title {
-  font-family: 'GmarketSansHeavy', sans-serif;
-  font-size: clamp(40px, 9vw, 62px); /* 크기를 살짝 더 키움 */
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: 'GmarketSansBold', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 7.5vw, 52px); /* 격자를 부수지 않는 마지노선 스케일 */
+  line-height: 1.2;
+  letter-spacing: -0.04em;
   color: #111110;
   margin: 0;
-  white-space: nowrap; /* 절대 줄바꿈되지 않도록 설정 */
+  word-break: keep-all;
 }
 
-/* 우측 세로형 뱃지 */
+/* 우측 세로형 뱃지 영역 */
 .poster-side-badge {
   width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(251, 251, 250, 0.4);
+  background: #ffffff;
 }
 .poster-side-badge span {
   transform: rotate(90deg);
@@ -102,71 +93,62 @@ body {
   font-size: 10px;
   font-weight: 800;
   color: #1c1c1a;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
 }
 
-/* 그리드 2층 : 소개글 영역 */
+/* [그리드 2층] 이미지 분석에 따라 초록색 채도가 집약적으로 분포되는 구간 */
 .poster-floor-2 {
   display: flex;
-  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  background: #ffffff;
 }
+
+/* 이미지 내부 분홍색 안개 분포 무드를 초록색으로 이식 */
 .poster-desc-area {
   flex: 1;
   padding: 38px 24px;
+  position: relative;
+  background: radial-gradient(circle at 10% 30%, rgba(90, 235, 90, 0.65) 0%, rgba(200, 247, 200, 0.2) 50%, transparent 80%);
 }
+
 .poster-question-text {
+  font-family: 'Pretendard', sans-serif;
   font-size: 18px;
   font-weight: 800;
-  line-height: 1.5;
+  line-height: 1.45;
   color: #111110;
-  margin: 0 0 18px 0;
+  margin: 0 0 16px 0;
   letter-spacing: -0.02em;
-  text-align: left;
 }
 .poster-body-text {
-  font-size: 14.5px;
-  line-height: 1.85;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
   color: #3a3a35;
-  text-align: left;
 }
 .poster-body-text p {
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
 }
 .poster-body-text p:last-child {
   margin-bottom: 0;
 }
 
-/* 우측 디테일 : AI 주제에 어울리는 테크 회로 노드 그래픽 기호로 변경 */
+/* 우측 디테일 룸 : 별 모양(✦) 포인트 완벽 배치 */
 .poster-side-deco {
   width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at center, rgba(185, 245, 185, 0.4) 0%, transparent 70%);
 }
-.poster-ai-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.poster-ai-node::before,
-.poster-ai-node::after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border: 1.5px solid #1c1c1a;
-  border-radius: 50%;
-  background: #fdfdfb;
-}
-.poster-ai-node-line {
-  width: 1.5px;
-  height: 24px;
-  background: #1c1c1a;
+.poster-sparkle-icon {
+  font-size: 18px;
+  color: #1c1c1a;
+  font-weight: 900;
 }
 
-/* --- 이하 고정 영역 레이아웃 --- */
+/* --- 이하 고정 데이터 레이아웃 --- */
 .notice {
   display: flex;
   align-items: center;
@@ -261,11 +243,11 @@ body {
 <body>
 <main class='wrap'>
   
-  <!-- 요청주신 지마켓산스 타이틀, 고채도 노이즈, 콤마 줄바꿈, AI 노드가 적용된 포스터 영역 -->
+  <!-- 포스터 격자 프레임을 칼같이 지키면서 초록색 무드를 매칭시킨 완성형 히어로 -->
   <section class='poster-container'>
     <div class="poster-content">
       
-      <!-- 1층: 타이틀 (Gmarket Sans Heavy) + 세로 라벨 -->
+      <!-- 1층 그리드: Gmarket Sans Bold 헤드라인 블록 (우측 정밀 스냅 보더라인 매칭) -->
       <div class="poster-floor-1">
         <div class="poster-title-area">
           <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
@@ -275,7 +257,7 @@ body {
         </div>
       </div>
       
-      <!-- 2층: 소개글 박스 (콤마 뒤 무조건 줄바꿈 브레이크 추가) -->
+      <!-- 2층 그리드: 이미지 텍스처 특징처럼 라임 초록이 은은하게 번지는 서문 박스 + 크로스 ✦ 심볼 -->
       <div class="poster-floor-2">
         <div class="poster-desc-area">
           <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
@@ -285,11 +267,8 @@ body {
             <p>이 책들과 함께 AI가 가져올<br>노동의 변화와 미래를 살펴보며,<br>우리가 나아갈 방향을 생각해 봅니다.</p>
           </div>
         </div>
-        <!-- AI 주제성을 직관적으로 보여주는 데이터 회로 노드 포인트 스케치 -->
         <div class="poster-side-deco">
-          <div class="poster-ai-node">
-            <div class="poster-ai-node-line"></div>
-          </div>
+          <span class="poster-sparkle-icon">✦</span>
         </div>
       </div>
 
