@@ -4,11 +4,9 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>AI 시대의 노동</title>
-<!-- Gmarket Sans 서체 명확한 웹폰트 스크립트 로드 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.css" />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
-/* 전반적인 기본 톤앤매너 */
+/* 전반적인 기본 무드 세팅 */
 body {
   margin: 0;
   background: #f8f8f6;
@@ -23,24 +21,37 @@ body {
 }
 
 /* ==========================================================================
-   [완벽 매칭] HERO POSTER GRID SYSTEM (image_b16c85.png 레이아웃 완벽 이식)
+   [완벽 교정] HERO POSTER GRID SYSTEM (초록색 고른 분포 + 프리텐다드 블랙)
    ========================================================================== */
 .poster-container {
   position: relative;
-  background: #ffffff;
-  border: 1px solid #1c1c1a;
+  background: #fdfdfb;
+  border: 1px solid #1c1c1a; /* 가늘고 명확한 격자 테두리 선 */
   margin-bottom: 60px;
   box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
 }
 
-/* 이미지처럼 전체 레이어를 투과하는 공통 종이 노이즈 질감(Grain) 오버레이 */
+/* 이미지의 색상 분포 분석 반영: 상단 타이틀부터 하단까지 초록색 톤이 고르게 분포하도록 배경 수정 */
+.poster-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, rgba(185, 245, 185, 0.85) 0%, rgba(225, 252, 225, 0.5) 40%, rgba(253, 253, 251, 0) 85%),
+    radial-gradient(circle at 15% 25%, rgba(90, 235, 90, 0.7) 0%, transparent 55%),
+    radial-gradient(circle at 85% 75%, rgba(120, 240, 120, 0.5) 0%, transparent 60%);
+  z-index: 1;
+}
+
+/* 포스터 특유의 까슬까슬한 종이 노이즈 질감(Grain) 오버레이 */
 .poster-container::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
+  opacity: 0.08; /* 노이즈 강도 유지 */
   mix-blend-mode: multiply;
   z-index: 2;
   pointer-events: none;
@@ -53,39 +64,37 @@ body {
   flex-direction: column;
 }
 
-/* [그리드 1층] 타이틀 영역 + 우측 세로 라벨 (이미지 상단처럼 깨끗하고 맑게 배경 유지) */
+/* [그리드 1층] 메인 타이틀 영역 + 우측 세로 라벨 */
 .poster-floor-1 {
   display: flex;
   border-bottom: 1px solid #1c1c1a;
-  background: #ffffff;
 }
 .poster-title-area {
   flex: 1;
-  padding: 40px 24px;
+  padding: 44px 24px;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-/* Gmarket Sans Bold 교정 및 아웃박스를 절대 해치지 않는 크기 설정 */
+/* 프리텐다드 블랙 적용 및 격자 틀을 절대 깨지 않는 선에서 크기 최적화 */
 .poster-main-title {
-  font-family: 'GmarketSansBold', sans-serif;
-  font-weight: 700;
-  font-size: clamp(34px, 7.5vw, 52px); /* 격자를 부수지 않는 마지노선 스케일 */
-  line-height: 1.2;
-  letter-spacing: -0.04em;
+  font-size: clamp(38px, 8.8vw, 60px); 
+  font-weight: 900; /* 프리텐다드 최고 두께로 대담함 연출 */
+  line-height: 1.15;
+  letter-spacing: -0.055em; /* 포스터 특유의 타이트한 자간 */
   color: #111110;
   margin: 0;
   word-break: keep-all;
 }
 
-/* 우측 세로형 뱃지 영역 */
+/* 우측 세로형 뱃지 라벨 */
 .poster-side-badge {
   width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
 }
 .poster-side-badge span {
   transform: rotate(90deg);
@@ -96,23 +105,16 @@ body {
   letter-spacing: 0.25em;
 }
 
-/* [그리드 2층] 이미지 분석에 따라 초록색 채도가 집약적으로 분포되는 구간 */
+/* [그리드 2층] 소개 서문 박스 + 우측 프레임 별 심볼 */
 .poster-floor-2 {
   display: flex;
-  position: relative;
-  background: #ffffff;
 }
-
-/* 이미지 내부 분홍색 안개 분포 무드를 초록색으로 이식 */
 .poster-desc-area {
   flex: 1;
   padding: 38px 24px;
-  position: relative;
-  background: radial-gradient(circle at 10% 30%, rgba(90, 235, 90, 0.65) 0%, rgba(200, 247, 200, 0.2) 50%, transparent 80%);
+  box-sizing: border-box;
 }
-
 .poster-question-text {
-  font-family: 'Pretendard', sans-serif;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.45;
@@ -121,7 +123,6 @@ body {
   letter-spacing: -0.02em;
 }
 .poster-body-text {
-  font-family: 'Pretendard', sans-serif;
   font-size: 14px;
   line-height: 1.8;
   color: #3a3a35;
@@ -133,22 +134,23 @@ body {
   margin-bottom: 0;
 }
 
-/* 우측 디테일 룸 : 별 모양(✦) 포인트 완벽 배치 */
+/* 우측 디테일 셀 : 클래식한 성좌 별 심볼(✦) 배치 */
 .poster-side-deco {
   width: 54px;
   border-left: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(185, 245, 185, 0.4) 0%, transparent 70%);
+  background: rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
 }
 .poster-sparkle-icon {
   font-size: 18px;
   color: #1c1c1a;
-  font-weight: 900;
+  font-weight: bold;
 }
 
-/* --- 이하 고정 데이터 레이아웃 --- */
+/* --- 이하 고정 영역 레이아웃 (일절 건드리지 않음) --- */
 .notice {
   display: flex;
   align-items: center;
@@ -243,11 +245,11 @@ body {
 <body>
 <main class='wrap'>
   
-  <!-- 포스터 격자 프레임을 칼같이 지키면서 초록색 무드를 매칭시킨 완성형 히어로 -->
+  <!-- 포스터 격자 프레임의 아귀를 칼같이 유지하면서 초록색 톤을 상하방에 고르게 분산시킨 완전형 히어로 -->
   <section class='poster-container'>
     <div class="poster-content">
       
-      <!-- 1층 그리드: Gmarket Sans Bold 헤드라인 블록 (우측 정밀 스냅 보더라인 매칭) -->
+      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 (우측 정밀 스냅 보더라인 매칭) -->
       <div class="poster-floor-1">
         <div class="poster-title-area">
           <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
@@ -257,7 +259,7 @@ body {
         </div>
       </div>
       
-      <!-- 2층 그리드: 이미지 텍스처 특징처럼 라임 초록이 은은하게 번지는 서문 박스 + 크로스 ✦ 심볼 -->
+      <!-- 2층: 콤마 줄바꿈 및 격자형 서문 안내 셀 + ✦ 별 심볼 마크 -->
       <div class="poster-floor-2">
         <div class="poster-desc-area">
           <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
@@ -368,7 +370,7 @@ body {
     </div>
     
     <div class='card'>
-      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/423172830/423172828/9791173324253' target='_blank' rel='noopener noreferrer'>
+      <a href='https://umyeon.seocholib.or.kr/bookDetail/MO/4233172830/4233172828/9791173324253' target='_blank' rel='noopener noreferrer'>
         <img class='cover' src='https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791173324253.jpg' alt='AI 시대, 강력한 개인이 온다'>
       </a>
       <div class="card-info">
