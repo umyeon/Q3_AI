@@ -27,33 +27,34 @@ body {
   margin-bottom: 60px;
 }
 
-/* 미술관 전시 무드의 은은한 호흡(Pulse) 애니메이션 정의 */
-@keyframes glowPulse {
-  0% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.15); opacity: 0.9; filter: blur(15px); }
-  100% { transform: scale(1); opacity: 0.7; }
+/* 미술관 디지털 전시 무드의 극도로 절제된 블러 페이드인 애니메이션 */
+@keyframes 미니멀페이드 {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
 }
 
-/* 텍스트가 부드럽게 올라오는 등장 애니메이션 정의 */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 초록색 광원을 타이틀과 완벽히 중첩되도록 위치 조정 (글씨 레이어 뒤 배치) */
+/* 초록색 광원을 더 왼쪽으로 이동시키고 타이틀과 자연스럽게 중첩되도록 수정 */
 .hero:before {
   content: '';
   position: absolute;
-  left: 10px;
-  top: 80px;
-  width: 280px;
-  height: 280px;
+  left: -120px; /* 더 왼쪽으로 배치 */
+  top: 40px;
+  width: 340px;
+  height: 340px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(141, 230, 141, 0.85) 0%, rgba(141, 230, 141, 0.45) 45%, rgba(248, 248, 246, 0) 70%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(141, 230, 141, 0.85) 0%, rgba(141, 230, 141, 0.4) 45%, rgba(248, 248, 246, 0) 70%);
+  filter: blur(15px);
   z-index: -1;
   pointer-events: none;
-  animation: glowPulse 7s infinite ease-in-out; /* 갤러리 감성의 호흡 효과 */
+  animation: 미니멀페이드 2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 /* 아이브로우와 타이틀 사이 여백 넓게 유지 */
@@ -72,20 +73,22 @@ body {
   border-bottom: 1.5px solid #bdbeb6;
 }
 
-/* 모바일 가로폭을 가득 채우되 밖으로 터지지 않도록 clamp 및 vw 유연값 적용 */
+/* 모바일 화면 가로를 꽉 채우도록 크기를 극대화하되 잘리지 않도록 배치 */
 .hero-title {
-  font-size: clamp(42px, 11vw, 64px); 
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.05em;
+  font-size: clamp(48px, 14vw, 76px); 
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.055em;
   color: #ffffff;
-  -webkit-text-stroke: 1.3px #1c1c1a;
+  -webkit-text-stroke: 1.5px #1c1c1a;
   margin: 0;
   word-break: keep-all;
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; /* 고급스러운 슬라이드 인 */
+  width: 100%;
+  box-sizing: border-box;
+  animation: 미니멀페이드 1.6s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-/* 타이틀 밑 소개글 영역 및 등장 애니메이션 순차 적용 */
+/* 타이틀 밑 소개글 영역 */
 .hero-question {
   font-size: 21px;
   font-weight: 700;
@@ -94,7 +97,7 @@ body {
   color: #111;
   border-left: 3px solid #111;
   padding-left: 16px;
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: 미니멀페이드 1.8s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-delay: 0.2s;
 }
 .hero-text {
@@ -102,8 +105,8 @@ body {
   line-height: 1.8;
   color: #555;
   padding-left: 20px;
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.3s;
+  animation: 미니멀페이드 2s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: 0.4s;
 }
 .hero-text p {
   margin: 0 0 12px 0;
