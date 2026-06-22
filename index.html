@@ -20,8 +20,19 @@ body {
   padding: 40px 20px 100px;
 }
 
+/* 상단 독립 뱃지 라벨 (미니멀 디자인) */
+.top-badge-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #5a7a5a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-left: 2px;
+}
+
 /* ==========================================================================
-   [완벽 조율] HERO POSTER GRID SYSTEM (가운데 정렬 + 격자 아귀 고정)
+   [완벽 조율] HERO POSTER GRID SYSTEM (배경 절대 유지 + 내부 레이아웃 완전 개편)
    ========================================================================== */
 .poster-container {
   position: relative;
@@ -33,7 +44,7 @@ body {
   overflow: hidden;
 }
 
-/* 초록색 배경 채도를 맑고 차분하게 낮춤 */
+/* 초록색 배경 채도를 맑고 차분하게 낮춤 (기존 배경 무조건 유지) */
 .poster-container::before {
   content: '';
   position: absolute;
@@ -45,7 +56,7 @@ body {
   z-index: 1;
 }
 
-/* 노이즈 질감 강도를 눈에 확 띄도록 극대화 변경 */
+/* 노이즈 질감 강도를 눈에 확 띄도록 극대화 변경 (기존 배경 무조건 유지) */
 .poster-container::after {
   content: '';
   position: absolute;
@@ -57,111 +68,70 @@ body {
   pointer-events: none;
 }
 
+/* 좌 타이틀(90도 회전), 우 설명글 배치를 위한 2칸 분할 가로 구조 정밀 레이아웃 */
 .poster-content {
   position: relative;
   z-index: 3;
   display: flex;
-  flex-direction: column;
-}
-
-/* 격자가 절대 어긋나지 않도록 테이블 레이아웃 방식으로 확정 고정 */
-.poster-floor-1, .poster-floor-2 {
-  display: flex;
   width: 100%;
+  min-height: 380px;
   box-sizing: border-box;
 }
 
-.poster-floor-1 {
-  border-bottom: 1px solid #1c1c1a;
-}
-
-/* 타이틀이 우측 54px 공간을 침범하지 않으면서 정중앙에 오도록 조율 */
-.poster-title-area {
-  width: calc(100% - 54px);
-  flex: 1;
-  padding: 44px 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center; /* 내부 요소를 중앙으로 */
-  align-items: center;
-}
-
-/* 쉼표를 제외하고는 임의로 줄바꿈이 생기지 않도록 고정하며 정중앙 정렬 */
-.poster-main-title {
-  font-size: clamp(40px, 10vw, 64px); 
-  font-weight: 900; 
-  line-height: 1.15;
-  letter-spacing: -0.055em; 
-  color: #111110;
-  margin: 0;
-  text-align: center; /* 박스 내부에서 완벽한 가운데 정렬 */
-  white-space: nowrap; /* 오직 <br> 태그(쉼표 뒤)에서만 행바꿈 허용 */
-}
-
-/* 우측 세로형 뱃지 라벨 - 고정 치수로 박아 아귀를 강제 일치시킴 */
-.poster-side-badge {
-  width: 54px;
-  min-width: 54px;
-  max-width: 54px;
-  border-left: 1px solid #1c1c1a;
+/* 좌측 90도 회전 타이틀 칸 */
+.poster-left-title-box {
+  width: 120px;
+  min-width: 120px;
+  border-right: 1px solid #1c1c1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
   box-sizing: border-box;
-}
-.poster-side-badge span {
-  transform: rotate(90deg);
-  white-space: nowrap;
-  font-size: 10px;
-  font-weight: 800;
-  color: #1c1c1a;
-  letter-spacing: 0.25em;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
-/* 2층 소개 서문 박스 */
-.poster-desc-area {
-  width: calc(100% - 54px);
-  flex: 1;
-  padding: 38px 24px;
-  box-sizing: border-box;
+/* 타이틀 폰트 크기 유지 및 좌측 격자 내부에서 완전한 90도 회전 */
+.poster-main-title {
+  font-size: clamp(40px, 10vw, 52px); 
+  font-weight: 900; 
+  line-height: 1.1;
+  letter-spacing: -0.045em; 
+  color: #111110;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  transform: rotate(-90deg);
 }
+
+/* 우측 설명 칸 */
+.poster-right-desc-box {
+  flex: 1;
+  padding: 44px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .poster-question-text {
   font-size: 18px;
   font-weight: 800;
   line-height: 1.45;
   color: #111110;
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
   letter-spacing: -0.02em;
 }
 .poster-body-text {
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: #3a3a35;
 }
 .poster-body-text p {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
 }
 .poster-body-text p:last-child {
   margin-bottom: 0;
-}
-
-/* 우측 디테일 셀 - 1층 뱃지와 세로 격자 라인을 자석처럼 100% 일치시킴 */
-.poster-side-deco {
-  width: 54px;
-  min-width: 54px;
-  max-width: 54px;
-  border-left: 1px solid #1c1c1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  box-sizing: border-box;
-}
-.poster-sparkle-icon {
-  font-size: 16px;
-  color: #1c1c1a;
-  font-weight: bold;
 }
 
 /* --- 이하 고정 영역 레이아웃 (일절 건드리지 않음) --- */
@@ -254,37 +224,36 @@ body {
   padding: 3px 8px;
   border-radius: 4px;
 }
+
+/* 누적 방문자수 스타일 지정 (우측 정렬, 저자명 크기 13.5px 상당인 text-xs 계열 맞춤, 검은색) */
+.visit-counter-container {
+  text-align: right;
+  font-size: 13.5px;
+  color: #242424;
+  font-weight: 500;
+  margin-top: 48px;
+  padding-right: 4px;
+}
 </style>
 </head>
 <body>
 <main class='wrap'>
   
-  <!-- 타이틀 가운데 정렬과 우측 격자 라인의 칼매칭을 동시 실현한 최종 완성본 포스터 히어로 -->
+  <div class="top-badge-label">우면도서관 북큐레이션 ｜ 종합자료실</div>
+
   <section class='poster-container'>
     <div class="poster-content">
       
-      <!-- 1층: 프리텐다드 블랙 헤드라인 블록 (박스 내 완벽한 가운데 정렬 고정) -->
-      <div class="poster-floor-1">
-        <div class="poster-title-area">
-          <h1 class='poster-main-title'>AI 시대의 노동,<br>일의 미래를 묻다</h1>
-        </div>
-        <div class="poster-side-badge">
-          <span>우면도서관 ｜ 종합자료실</span>
-        </div>
+      <div class="poster-left-title-box">
+        <h1 class='poster-main-title'>AI 시대의 노동</h1>
       </div>
       
-      <!-- 2층: 서문 안내 셀 + ★ 별 심볼 마크 (세로 격자선이 1층과 한치의 오차 없이 일치) -->
-      <div class="poster-floor-2">
-        <div class="poster-desc-area">
-          <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
-          <div class='poster-body-text'>
-            <p>인공지능은 우리의 일자리를 빼앗을까요,<br>새로운 기회를 만들어낼까요?</p>
-            <p>AI의 발전은 우리의 노동 환경과 필요한 역량을<br>빠르게 변화시키고 있습니다.</p>
-            <p>이 책들과 함께 AI가 가져올<br>노동의 변화와 미래를 살펴보며,<br>우리가 나아갈 방향을 생각해 봅니다.</p>
-          </div>
-        </div>
-        <div class="poster-side-deco">
-          <span class="poster-sparkle-icon">★</span>
+      <div class="poster-right-desc-box">
+        <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
+        <div class='poster-body-text'>
+          <p>인공지능은 우리의 일자리를 빼앗을까요,<br>새로운 기회를 만들어낼까요?</p>
+          <p>AI의 발전은 우리의 노동 환경과 필요한 역량을<br>빠르게 변화시키고 있습니다.</p>
+          <p>이 책들과 함께 AI가 가져올<br>노동의 변화와 미래를 살펴보며,<br>우리가 나아갈 방향을 생각해 봅니다.</p>
         </div>
       </div>
 
@@ -293,7 +262,6 @@ body {
 
   <div class='notice'>📚 책 표지를 클릭하면 해당 도서를 바로 찾아볼 수 있습니다.</div>
 
-  <!-- SECTION 01 -->
   <section class='section'>
     <div class='section-no'>SECTION 01</div>
     <div class='section-title'>변화</div>
@@ -344,7 +312,6 @@ body {
     </div>
   </section>
 
-  <!-- SECTION 02 -->
   <section class='section'>
     <div class='section-no'>SECTION 02</div>
     <div class='section-title'>적응</div>
@@ -395,7 +362,6 @@ body {
     </div>
   </section>
 
-  <!-- SECTION 03 -->
   <section class='section'>
     <div class='section-no'>SECTION 03</div>
     <div class='section-title'>미래</div>
@@ -445,6 +411,23 @@ body {
       </div>
     </div>
   </section>
+
+  <div class="visit-counter-container">
+    TOTAL VISITS: <span id="visitCount" style="font-weight: 700;">0</span>
+  </div>
+
 </main>
+
+<script>
+  let count = localStorage.getItem('labor_ai_visits');
+  if (count === null) {
+    count = 0;
+  } else {
+    count = parseInt(count);
+  }
+  count++;
+  localStorage.setItem('labor_ai_visits', count);
+  document.getElementById('visitCount').innerText = count.toLocaleString();
+</script>
 </body>
 </html>
