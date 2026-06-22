@@ -4,6 +4,8 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>AI 시대의 노동</title>
+<!-- 큐트 폰트(Cute Font) 구글 공식 서체 추가 로드 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
 /* 전반적인 기본 무드 세팅 */
@@ -232,18 +234,18 @@ body {
   border-radius: 4px;
 }
 
-/* 상단 배지 디자인과 통일시킨 분리형 방문자수 스타일 영역 (가운데 정렬 + 선명도 조절 소프트 블랙 테두리 박스) */
+/* 상단 배지 디자인과 통일시킨 분리형 방문자수 스타일 영역 (가운데 정렬 + 큐트 폰트 적용 및 크기 조정) */
 .visit-counter-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 56px;
 }
 .visit-counter-box {
-  font-size: 13.5px; /* 저자명 크기 일치 */
+  font-family: 'Cute Font', sans-serif; /* 큐트 폰트 적용 */
+  font-size: 19px; /* 큐트 폰트 특성상 작게 보이는 현상을 보완하기 위해 시각적 균형 크기로 조정 */
   color: rgba(36, 36, 36, 0.7); /* 선명도를 은은하게 낮춘 세팅 */
-  font-weight: 500;
   letter-spacing: 0.04em;
-  padding: 6px 16px;
+  padding: 4px 16px;
   border: 1px solid rgba(28, 28, 26, 0.25); /* 톤다운 테두리선 */
   border-radius: 4px;
   background: rgba(28, 28, 26, 0.01);
@@ -255,10 +257,10 @@ body {
   color: rgba(36, 36, 36, 0.9);
 }
 .count-space {
-  margin-right: 6px; /* 지정값 규모만큼의 약소한 여백 구현 */
+  margin-right: 5px; /* 지정값 규모만큼의 약소한 여백 구현 */
 }
 .count-divider {
-  margin: 0 12px;
+  margin: 0 10px;
   color: rgba(28, 28, 26, 0.2);
 }
 </style>
@@ -266,17 +268,21 @@ body {
 <body>
 <main class='wrap'>
   
+  <!-- 상단 오른쪽 정렬 및 미니멀 테두리 형태로 수정한 독립 배지 영역 -->
   <div class="top-badge-container">
     <div class="top-badge-label">우면도서관 북큐레이션 ｜ 종합자료실</div>
   </div>
 
+  <!-- 좌우 격자 레이아웃 포스터 히어로 (배경 및 포스터 아웃라인 완전 유지) -->
   <section class='poster-container'>
     <div class="poster-content">
       
+      <!-- 왼쪽 칸: 타이틀 90도 회전 배치 공간 (자간 정밀 축소 조율 적용) -->
       <div class="poster-left-title-box">
         <h1 class='poster-main-title'>AI 시대의 노동, 일의 미래를 묻다</h1>
       </div>
       
+      <!-- 오른쪽 칸: 설명 문구 배치 공간 (★ 심볼 마크는 완전 삭제) -->
       <div class="poster-right-desc-box">
         <h2 class='poster-question-text'>AI가 일하는 시대,<br>인간은 무엇을 할 것인가</h2>
         <div class='poster-body-text'>
@@ -291,6 +297,7 @@ body {
 
   <div class='notice'>📚 책 표지를 클릭하면 해당 도서를 바로 찾아볼 수 있습니다.</div>
 
+  <!-- SECTION 01 -->
   <section class='section'>
     <div class='section-no'>SECTION 01</div>
     <div class='section-title'>변화</div>
@@ -341,6 +348,7 @@ body {
     </div>
   </section>
 
+  <!-- SECTION 02 -->
   <section class='section'>
     <div class='section-no'>SECTION 02</div>
     <div class='section-title'>적응</div>
@@ -391,6 +399,7 @@ body {
     </div>
   </section>
 
+  <!-- SECTION 03 -->
   <section class='section'>
     <div class='section-no'>SECTION 03</div>
     <div class='section-title'>미래</div>
@@ -441,6 +450,7 @@ body {
     </div>
   </section>
 
+  <!-- 상단 배지와 통일된 형태 및 큐트 폰트가 반영된 톤다운 방문자 카운터 표시부 (가운데 정렬) -->
   <div class="visit-counter-wrapper">
     <div class="visit-counter-box">
       TODAY<span class="count-space"></span><span id="v_today" class="count-num">0</span>
@@ -451,6 +461,7 @@ body {
 
 </main>
 
+<!-- TODAY 및 TOTAL 자동 산정 영구 기록 스크립트 -->
 <script>
   const todayStr = new Date().toISOString().substring(0, 10);
   
