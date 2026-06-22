@@ -4,8 +4,8 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>AI 시대의 노동</title>
-<!-- 둥근모(DungGeunMo) 웹폰트 추가 로드 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/DungGeunMo.css" />
+<!-- 귀여운 픽셀 도트 느낌의 구글 DotGothic16 웹폰트 로드 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
 /* 전반적인 기본 무드 세팅 */
@@ -234,19 +234,19 @@ body {
   border-radius: 4px;
 }
 
-/* 상단 배지 디자인과 통일시킨 분리형 방문자수 스타일 영역 (가운데 정렬 + 둥근모 폰트 적용) */
+/* 상단 배지 디자인과 통일시킨 분리형 방문자수 스타일 영역 (가운데 정렬 + DotGothic16 픽셀 도트 서체 바인딩) */
 .visit-counter-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 56px;
 }
 .visit-counter-box {
-  font-family: 'DungGeunMo', sans-serif; /* 이미지 맞춤형 둥근모 폰트 적용 */
-  font-size: 14px; /* 저자명 크기 감성 유지 */
-  color: rgba(36, 36, 36, 0.7); /* 선명도를 은은하게 낮춘 세팅 */
-  letter-spacing: 0.04em;
+  font-family: 'DotGothic16', sans-serif; /* 납작하고 귀여운 기계식 픽셀 도트 감성 구현 */
+  font-size: 14px; /* 시각적 가독성 균형 크기 정돈 */
+  color: rgba(36, 36, 36, 0.65); /* 은은하게 낮춘 선명도 세팅 유지 */
+  letter-spacing: 0.06em; /* 도트 텍스트 판독을 위한 적정 자간 */
   padding: 6px 16px;
-  border: 1px solid rgba(28, 28, 26, 0.25); /* 톤다운 테두리선 */
+  border: 1px solid rgba(28, 28, 26, 0.22); /* 톤다운 테두리선 */
   border-radius: 4px;
   background: rgba(28, 28, 26, 0.01);
   display: inline-flex;
@@ -254,18 +254,18 @@ body {
 }
 .count-num {
   font-weight: 700;
-  color: rgba(36, 36, 36, 0.9);
+  color: rgba(36, 36, 36, 0.85);
 }
-/* 첨부 이미지 맞춤형 TOTAL 전용 레드 컬러 스케일 부여 */
+/* 첨부 이미지와 완벽하게 일치시킨 TOTAL 고유 레드 컬러 */
 .count-num-total {
   font-weight: 700;
   color: #b54545; 
 }
 .count-space {
-  margin-right: 5px; /* 지정값 규모만큼의 약소한 여백 구현 */
+  margin-right: 6px; /* 이미지 속 여백 비율 최적화 */
 }
 .count-divider {
-  margin: 0 10px;
+  margin: 0 12px;
   color: rgba(28, 28, 26, 0.2);
 }
 </style>
@@ -455,7 +455,7 @@ body {
     </div>
   </section>
 
-  <!-- 상단 배지와 통일된 형태 및 둥근모 폰트, TOTAL 레드 색상이 반영된 방문자 카운터 표시부 (가운데 정렬) -->
+  <!-- 상단 배지와 디자인이 일치하며 픽셀 감성의 DotGothic16 폰트 및 TOTAL 레드 색상이 반영된 방문자 카운터 표시부 (가운데 정렬) -->
   <div class="visit-counter-wrapper">
     <div class="visit-counter-box">
       TODAY<span class="count-space"></span><span id="v_today" class="count-num">0</span>
